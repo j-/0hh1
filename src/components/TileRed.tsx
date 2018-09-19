@@ -1,9 +1,13 @@
 import * as React from 'react';
-import Tile from './Tile';
+import Tile, { Props as TileProps } from './Tile';
 import './TileRed.css';
 
-const TileRed: React.StatelessComponent = () => (
-	<Tile className="TileRed" />
+export interface Props extends TileProps {
+
+}
+
+const TileRed: React.StatelessComponent<Props> = (props) => (
+	<Tile className="TileRed" {...props} />
 );
 
 export default TileRed;

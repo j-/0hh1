@@ -1,4 +1,21 @@
 .Tile {
 	width: 1.5em;
 	height: 2em;
+	cursor: pointer;
+	position: relative;
+}
+
+.Tile--is-locked {
+	cursor: default;
+}
+
+.Tile--is-locked.Tile--show-locked::before {
+	content: '';
+	display: block;
+	position: absolute;
+	top: 40%;
+	left: 40%;
+	right: 40%;
+	bottom: 40%;
+	background-color: rgba(0, 0, 0, 0.5);
 }

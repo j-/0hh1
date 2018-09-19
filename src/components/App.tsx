@@ -1,8 +1,12 @@
 import * as React from 'react';
+import Board from './Board';
 
 const App: React.StatelessComponent = () => (
 	<div className="App">
-		{null}
+		<Board
+			width={4}
+			height={4}
+		/>
 	</div>
 );
 

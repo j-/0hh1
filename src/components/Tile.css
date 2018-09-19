@@ -1,8 +1,9 @@
 .Tile {
-	width: 1.5em;
-	height: 2em;
+	width: 1em;
+	height: 1em;
 	cursor: pointer;
 	position: relative;
+	border-radius: 0.125em;
 }
 
 .Tile--is-locked {
@@ -18,4 +19,8 @@
 	right: 40%;
 	bottom: 40%;
 	background-color: rgba(0, 0, 0, 0.5);
+}
+
+.Tile:not(.TileEmpty) {
+	box-shadow: inset 0 -0.1em rgba(0, 0, 0, 0.25);
 }

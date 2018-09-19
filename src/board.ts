@@ -52,3 +52,19 @@ export const eachColumn = <T = any>(width: number, tiles: T[], iter: (tiles: T[]
 		iter(slice);
 	}
 };
+
+export const countTiles = (tiles: Array<Tile | null>, type: Tile | null) => (
+	tiles.filter((tile) => tile === type).length
+);
+
+export const countEmpty = (tiles: Array<Tile | null>) => (
+	countTiles(tiles, null)
+);
+
+export const countRed = (tiles: Array<Tile | null>) => (
+	countTiles(tiles, Tile.RED)
+);
+
+export const countBlue = (tiles: Array<Tile | null>) => (
+	countTiles(tiles, Tile.BLUE)
+);

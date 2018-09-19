@@ -9,3 +9,13 @@ export const getNextTile = (tile: Tile | null): Tile | null => (
 	tile === Tile.BLUE ? null :
 	Tile.RED
 );
+
+/** Returns `true` if no positions on the board are empty. */
+export const isBoardFilled = (tiles: Array<Tile | null>) => {
+	for (let i = 0; i < tiles.length; i++) {
+		if (tiles[i] === null) {
+			return false;
+		}
+	}
+	return true;
+};

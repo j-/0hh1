@@ -1,5 +1,5 @@
 import { Reducer } from 'redux';
-import { Tile } from '../board';
+import { Tile, getNextTile } from '../board';
 import { isActionToggleTile } from './actions';
 
 const { RED, BLUE } = Tile;
@@ -33,11 +33,7 @@ const reducer: Reducer<ReducerState> = (state = DEFAULT_STATE, action) => {
 		const { x, y } = action.data;
 		const index = getTileIndex(state, x, y);
 		const tile = getPlayerTile(state, x, y);
-		const nextTile = (
-			tile === RED ? BLUE :
-			tile === BLUE ? null :
-			RED
-		);
+		const nextTile = getNextTile(tile);
 		const player = [...state.player];
 		player[index] = nextTile;
 		return {

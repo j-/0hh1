@@ -19,7 +19,12 @@ export const DEFAULT_STATE: ReducerState = {
 		null, BLUE, BLUE, null,
 		null, null, null, null,
 	],
-	player: [],
+	player: [
+		null, null, null, null,
+		null, null, null, null,
+		RED, null, null, RED,
+		null, null, null, null,
+	],
 };
 
 const reducer: Reducer<ReducerState> = (state = DEFAULT_STATE, action) => {

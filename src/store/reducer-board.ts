@@ -27,3 +27,11 @@ const reducer: Reducer<ReducerState> = (state = DEFAULT_STATE, action) => {
 };
 
 export default reducer;
+
+export const getBoardWidth = (state: ReducerState) => (
+	state.width
+);
+
+export const getBoardHeight = (state: ReducerState) => (
+	state.height
+);

@@ -10,3 +10,11 @@ const reducer: Reducer<ReducerState> = combineReducers<ReducerState>({
 });
 
 export default reducer;
+
+export const getBoardWidth = (state: ReducerState) => (
+	board.getBoardWidth(state.board)
+);
+
+export const getBoardHeight = (state: ReducerState) => (
+	board.getBoardHeight(state.board)
+);

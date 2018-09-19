@@ -1,0 +1,2 @@
+.Tile{width:1em;height:1em;cursor:pointer;position:relative;border-radius:.125em}.Tile--is-locked{cursor:default}.Tile--is-locked.Tile--show-locked:before{content:"";display:block;position:absolute;top:40%;left:40%;right:40%;bottom:40%;background-color:rgba(0,0,0,.5)}.Tile:not(.TileEmpty){-webkit-box-shadow:inset 0 -.1em rgba(0,0,0,.25);box-shadow:inset 0 -.1em rgba(0,0,0,.25)}.TileBlue{background-color:#09c}.TileRed{background-color:#c30}.TileEmpty{background-color:#eee}body{margin:0;padding:0;font-family:sans-serif}
+/*# sourceMappingURL=main.02bead52.css.map*/

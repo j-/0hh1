@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Tile from './Tile';
+import Tile from '../containers/Tile';
 
 export interface Props {
 	width: number;
@@ -15,7 +15,7 @@ const Board: React.StatelessComponent<Props> = ({ width, height }) => {
 		for (let x = 0; x < width; x++) {
 			cells.push(
 				<td key={x}>
-					<Tile type={null} />
+					<Tile x={x} y={y} />
 				</td>
 			);
 		}

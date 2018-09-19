@@ -1,5 +1,5 @@
 import { connect, MapStateToProps, MergeProps } from 'react-redux';
-import Tile, { Props } from '../components/Tile';
+import TileAny, { Props } from '../components/TileAny';
 import { Tile as TileType } from '../board';
 import { ReducerState, getDisplayTile } from '../store';
 
@@ -24,4 +24,4 @@ export default connect(
 	mapStateToProps,
 	null,
 	mergeProps,
-)(Tile);
+)(TileAny);

@@ -1,10 +1,9 @@
 import * as React from 'react';
+import Tile from './Tile';
 import './TileEmpty.css';
 
 const TileEmpty: React.StatelessComponent = () => (
-	<div className="TileEmpty">
-		{null}
-	</div>
+	<Tile className="TileEmpty" />
 );
 
 export default TileEmpty;

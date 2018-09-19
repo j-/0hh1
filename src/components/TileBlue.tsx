@@ -1,10 +1,9 @@
 import * as React from 'react';
+import Tile from './Tile';
 import './TileBlue.css';
 
 const TileBlue: React.StatelessComponent = () => (
-	<div className="TileBlue">
-		{null}
-	</div>
+	<Tile className="TileBlue" />
 );
 
 export default TileBlue;

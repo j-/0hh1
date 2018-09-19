@@ -1,17 +1,15 @@
 import * as React from 'react';
-import { Tile as TileType } from '../board';
-import TileBlue from './TileBlue';
-import TileRed from './TileRed';
-import TileEmpty from './TileEmpty';
+import * as classNames from 'classnames';
+import './Tile.css';
 
 export interface Props {
-	type: TileType | null;
+	className?: string;
 }
 
-const Tile: React.StatelessComponent<Props> = ({ type }) => (
-	type === TileType.RED ? <TileRed /> :
-	type === TileType.BLUE ? <TileBlue /> :
-	<TileEmpty />
+const Tile: React.StatelessComponent<Props> = (props) => (
+	<div
+		className={classNames('Tile', props.className)}
+	/>
 );
 
 export default Tile;

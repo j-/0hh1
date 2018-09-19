@@ -34,3 +34,7 @@ export const getDisplayTile = (state: ReducerState, x: number, y: number) => (
 export const isTileLocked = (state: ReducerState, x: number, y: number) => (
 	board.isTileLocked(state.board, x, y)
 );
+
+export const isBoardFilled = (state: ReducerState) => (
+	board.isBoardFilled(state.board)
+);

@@ -84,3 +84,18 @@ export const getDisplayTile = (state: ReducerState, x: number, y: number) => (
 export const isTileLocked = (state: ReducerState, x: number, y: number) => (
 	getLockedTile(state, x, y) !== null
 );
+
+/** Returns `true` if no positions on the board are empty. */
+export const isBoardFilled = (state: ReducerState) => {
+	const { width, height, player, locked } = state;
+	const length = width * height;
+	for (let i = 0; i < length; i++) {
+		if (
+			player[i] === null &&
+			locked[i] === null
+		) {
+			return false;
+		}
+	}
+	return true;
+};

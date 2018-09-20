@@ -22,21 +22,26 @@ export class Validator<T = any> {
 		const warnings: ValidatorWarning<T>[] = [];
 		const lines = this.gi.getLines();
 		for (const line of Array.from(lines)) {
-			warnings.push(...this.validateLine(line));
+			warnings.push(...this.validateLineEqualColor(line));
 		}
 		return warnings;
 	}
 
-	private validateLine (line: GridRange<T>): ValidatorWarning<T>[] {
+	private validateLineEqualColor (line: GridRange<T>): ValidatorWarning<T>[] {
 		const warnings: ValidatorWarning<T>[] = [];
 		const { length } = line;
 		const maxSame = length / 2;
 		const counts = new Map();
 		for (const item of Array.from(line)) {
 			const { value } = item;
-			if (!counts.has(value)) {
+			if (value === null) {
+				// Ignore empty tiles
+				continue;
+			} else if (!counts.has(value)) {
+				// This is the first time we have seen this color
 				counts.set(value, 1);
 			} else {
+				// Increment the counter for this color
 				counts.set(value, counts.get(value) + 1);
 			}
 		}

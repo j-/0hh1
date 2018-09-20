@@ -20,18 +20,6 @@ export const isBoardFilled = (tiles: Array<Tile | null>) => {
 	return true;
 };
 
-/** Represents a single (x, y) coordinate pair. */
-export interface Position {
-	x: number;
-	y: number;
-}
-
-/** A rule violation. Contains multiple tiles. */
-export interface Warning {
-	range: Position[];
-	message: string;
-}
-
 export const eachRow = <T = any>(width: number, tiles: T[], iter: (tiles: T[]) => void) => {
 	const { length } = tiles;
 	for (let i = 0; i < length / width; i++) {

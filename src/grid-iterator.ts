@@ -4,7 +4,7 @@ export interface GridItem<T = any> {
 	readonly value: T;
 }
 
-export interface GridRange<T = any> {
+export interface GridRange<T = any> extends Iterable<GridItem<T>> {
 	readonly x1: number;
 	readonly y1: number;
 	readonly x2: number;
@@ -46,6 +46,11 @@ export class GridIterator<T = any> {
 			x1, y1,
 			x2, y2,
 			length,
+			* [Symbol.iterator]() {
+				for (let i = 0; i < this.length; i++) {
+					yield this[i];
+				}
+			},
 		};
 		let i = 0;
 		for (let y = y1; y < y2; y++) {

@@ -38,3 +38,7 @@ export const isTileLocked = (state: ReducerState, x: number, y: number) => (
 export const isBoardFilled = (state: ReducerState) => (
 	board.isBoardFilled(state.board)
 );
+
+export const getBoardWarnings = (state: ReducerState) => (
+	board.getBoardWarnings(state.board)
+);

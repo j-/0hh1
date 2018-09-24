@@ -1,6 +1,7 @@
 import { Reducer } from 'redux';
 import { Tile, getNextTile, isBoardFilled as isBoardFilledRule } from '../board';
 import { isActionToggleTile } from './actions';
+import { Validator } from '../validator';
 
 const { RED, BLUE } = Tile;
 
@@ -126,4 +127,14 @@ export const isTileLocked = (state: ReducerState, x: number, y: number) => (
 export const isBoardFilled = (state: ReducerState) => {
 	const tiles = getDisplayTiles(state);
 	return isBoardFilledRule(tiles);
+};
+
+/** Returns zero or more rule violation warnings. */
+export const getBoardWarnings = (state: ReducerState) => {
+	const validator = new Validator(
+		getBoardWidth(state),
+		getBoardHeight(state),
+		getDisplayTiles(state),
+	);
+	return validator.validate();
 };

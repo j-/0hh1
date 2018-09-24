@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Board from '../containers/Board';
 import Filled from '../containers/Filled';
+import Warnings from '../containers/Warnings';
 
 const App: React.StatelessComponent = () => (
 	<div className="App">
@@ -8,6 +9,9 @@ const App: React.StatelessComponent = () => (
 
 		<br />
 		<Filled />
+
+		<br />
+		<Warnings />
 	</div>
 );
 

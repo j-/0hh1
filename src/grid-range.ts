@@ -9,7 +9,11 @@ export class GridRange<T = any> implements Iterable<GridItem<T>> {
 	[index: number]: GridItem<T>;
 
 	constructor (x1: number, y1: number, x2: number, y2: number, items: GridItem<T>[]) {
-		Object.assign(this, items);
+		for (let i = 0; i < items.length; i++) {
+			Object.defineProperty(this, i, {
+				value: items[i],
+			});
+		}
 		this.x1 = x1;
 		this.y1 = y1;
 		this.x2 = x2;

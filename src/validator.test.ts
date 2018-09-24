@@ -46,3 +46,15 @@ it('validates that lines to not contain three of the same color', () => {
 	expect(warnings[1].range).toHaveProperty('x2', 1);
 	expect(warnings[1].range).toHaveProperty('y2', 6);
 });
+
+it('validates that lines are unique', () => {
+	const grid = [
+		BLUE, BLUE, RED, RED,
+		RED, RED, null, null,
+		RED, RED, null, null,
+		BLUE, BLUE, RED, RED,
+	];
+	const validator = new Validator(4, 4, grid);
+	const warnings = validator.validate();
+	expect(warnings).toHaveLength(2);
+});

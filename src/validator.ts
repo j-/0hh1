@@ -11,6 +11,7 @@ export class Validator<T = any> {
 	private static RUN_COUNT_LIMIT = 2;
 	private static ERROR_RUN_COUNT_LIMIT_EXCEEDED = 'No more than two tiles of the same color';
 	private static ERROR_MAX_COLOR_COUNT_EXCEEDED = 'Lines have an equal number of each color';
+	private static ERROR_LINES_NOT_UNIQUE = 'Lines must be unique';
 
 	constructor (width: number, height: number, grid: T[]) {
 		this.gi = new GridIterator<T>(width, height, grid);
@@ -19,6 +20,8 @@ export class Validator<T = any> {
 	public validate (): ValidatorWarning<T>[] {
 		return [
 			...this.validateLines(),
+			...this.validateUniqueRows(),
+			...this.validateUniqueCols(),
 		];
 	}
 
@@ -28,6 +31,31 @@ export class Validator<T = any> {
 		for (const line of Array.from(lines)) {
 			warnings.push(...this.validateLineEqualColor(line));
 			warnings.push(...this.validateLineMaxRun(line));
+		}
+		return warnings;
+	}
+
+	private validateUniqueRows (): ValidatorWarning<T>[] {
+		const rows = Array.from(this.gi.getRows());
+		return this.validateUniqueLines(rows);
+	}
+
+	private validateUniqueCols (): ValidatorWarning<T>[] {
+		const cols = Array.from(this.gi.getCols());
+		return this.validateUniqueLines(cols);
+	}
+
+	private validateUniqueLines (lines: GridRange<T>[]): ValidatorWarning<T>[] {
+		const warnings: ValidatorWarning<T>[] = [];
+		for (let i = 0; i < lines.length - 1; i++) {
+			for (let j = i + 1; j < lines.length; j++) {
+				if (this.areLinesEqual(lines[i], lines[j])) {
+					warnings.push({
+						range: GridRange.combineRanges(lines[i], lines[j]),
+						message: Validator.ERROR_LINES_NOT_UNIQUE,
+					});
+				}
+			}
 		}
 		return warnings;
 	}
@@ -88,6 +116,34 @@ export class Validator<T = any> {
 				}];
 			}
 		}
-		return []];
+		return [];
+	}
+
+	private areLinesEqual (left: GridRange<T>, right: GridRange<T>): boolean | null {
+		const length = left.length;
+		if (length !== right.length) {
+			throw new Error('Cannot compare lines of differing lengths');
+		}
+		if (!this.isLineFilled(left) || !this.isLineFilled(right)) {
+			// Both lines must be completely filled. Cannot compare.
+			return null;
+		}
+		for (let i = 0; i < length; i++) {
+			if (left[i].value !== right[i].value) {
+				// Values differ. Lines are not equal.
+				return false;
+			}
+		}
+		// Lines must be equal.
+		return true;
+	}
+
+	private isLineFilled (line: GridRange<T>): boolean {
+		for (let i = 0; i < line.length; i++) {
+			if (line[i].value === null) {
+				return false;
+			}
+		}
+		return true;
 	}
 }

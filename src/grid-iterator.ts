@@ -1,17 +1,5 @@
-export interface GridItem<T = any> {
-	readonly x: number;
-	readonly y: number;
-	readonly value: T;
-}
-
-export interface GridRange<T = any> extends Iterable<GridItem<T>> {
-	readonly x1: number;
-	readonly y1: number;
-	readonly x2: number;
-	readonly y2: number;
-	readonly length: number;
-	[index: number]: GridItem<T>;
-}
+import { GridItem } from './grid-item';
+import { GridRange } from './grid-range';
 
 export class GridIterator<T = any> {
 	private readonly width: number;
@@ -39,28 +27,20 @@ export class GridIterator<T = any> {
 	}
 
 	public getRange (x1: number, y1: number, x2: number, y2: number): GridRange<T> {
-		const dx = x2 - x1;
-		const dy = y2 - y1;
-		const length = dx * dy;
-		const range: GridRange<T> = {
-			x1, y1,
-			x2, y2,
-			length,
-			* [Symbol.iterator]() {
-				for (let i = 0; i < this.length; i++) {
-					yield this[i];
-				}
-			},
-		};
+		const items: GridItem<T>[] = [];
 		let i = 0;
 		for (let y = y1; y < y2; y++) {
 			for (let x = x1; x < x2; x++) {
 				const item = this.getItem(x, y);
-				range[i] = item;
+				items[i] = item;
 				i++;
 			}
 		}
-		return range;
+		return new GridRange(
+			x1, y1,
+			x2, y2,
+			items,
+		);
 	}
 
 	public * getRows (): IterableIterator<GridRange<T>> {

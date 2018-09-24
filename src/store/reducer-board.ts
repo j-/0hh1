@@ -138,3 +138,9 @@ export const getBoardWarnings = (state: ReducerState) => {
 	);
 	return validator.validate();
 };
+
+/** Board is filled and no rules are broken. */
+export const isBoardComplete = (state: ReducerState) => (
+	isBoardFilled(state) &&
+	getBoardWarnings(state).length === 0
+);

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Board from '../containers/Board';
-import Filled from '../containers/Filled';
+import Complete from '../containers/Complete';
 import Warnings from '../containers/Warnings';
 
 const App: React.StatelessComponent = () => (
@@ -8,7 +8,7 @@ const App: React.StatelessComponent = () => (
 		<Board />
 
 		<br />
-		<Filled />
+		<Complete />
 
 		<br />
 		<Warnings />

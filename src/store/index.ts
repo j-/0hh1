@@ -42,3 +42,7 @@ export const isBoardFilled = (state: ReducerState) => (
 export const getBoardWarnings = (state: ReducerState) => (
 	board.getBoardWarnings(state.board)
 );
+
+export const isBoardComplete = (state: ReducerState) => (
+	board.isBoardComplete(state.board)
+);

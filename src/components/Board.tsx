@@ -1,5 +1,6 @@
 import * as React from 'react';
 import TileAny from '../containers/Tile';
+import './Board.css';
 
 export interface Props {
 	width: number;
@@ -14,14 +15,14 @@ const Board: React.StatelessComponent<Props> = ({ width, height }) => {
 
 		for (let x = 0; x < width; x++) {
 			cells.push(
-				<td key={x}>
+				<td className="Board-cell" key={x}>
 					<TileAny x={x} y={y} />
 				</td>
 			);
 		}
 
 		rows.push(
-			<tr key={y}>
+			<tr className="Board-row" key={y}>
 				{cells}
 			</tr>
 		);
@@ -29,7 +30,7 @@ const Board: React.StatelessComponent<Props> = ({ width, height }) => {
 
 	return (
 		<table className="Board">
-			<tbody>
+			<tbody className="Board-body">
 				{rows}
 			</tbody>
 		</table>

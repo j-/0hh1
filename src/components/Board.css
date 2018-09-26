@@ -1,0 +1,8 @@
+.Board {
+	font-size: 3em;
+	border-collapse: collapse;
+}
+
+.Board-cell {
+	padding: 0.05em;
+}

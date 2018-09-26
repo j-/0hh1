@@ -1,11 +1,12 @@
 import { connect, MapStateToProps, MergeProps, MapDispatchToProps } from 'react-redux';
 import TileAny, { Props } from '../components/TileAny';
 import { Tile as TileType } from '../board';
-import { ReducerState, getDisplayTile, isTileLocked } from '../store';
+import { ReducerState, getDisplayTile, isTileLocked, isTileHighlightedWarning } from '../store';
 import { toggleTile } from '../store/actions';
 
 interface StateProps {
 	type: TileType | null;
+	isWarning: boolean;
 	isLocked: boolean;
 	showLocked: boolean;
 }
@@ -21,6 +22,7 @@ interface OwnProps {
 
 const mapStateToProps: MapStateToProps<StateProps, OwnProps, ReducerState> = (state, { x, y }) => ({
 	type: getDisplayTile(state, x, y),
+	isWarning: isTileHighlightedWarning(state, x, y),
 	isLocked: isTileLocked(state, x, y),
 	showLocked: true, // TODO: Store this value
 });

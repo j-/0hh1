@@ -6,6 +6,10 @@
 	border-radius: 0.125em;
 }
 
+.Tile--is-warning {
+	animation: Tile-pulse-outline 1s ease-in-out alternate infinite;
+}
+
 .Tile--is-locked {
 	cursor: default;
 }
@@ -23,4 +27,14 @@
 
 .Tile:not(.TileEmpty) {
 	box-shadow: inset 0 -0.1em rgba(0, 0, 0, 0.25);
+}
+
+@keyframes Tile-pulse-outline {
+	from {
+		box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.8);
+	}
+
+	to {
+		box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.8);
+	}
 }

@@ -1,5 +1,5 @@
-export interface GridItem<T = any> {
-	readonly x: number;
-	readonly y: number;
+import { TilePosition } from './board';
+
+export interface GridItem<T = any> extends TilePosition {
 	readonly value: T;
 }

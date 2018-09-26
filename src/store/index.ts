@@ -1,12 +1,15 @@
 import { combineReducers, Reducer } from 'redux';
 import * as board from './reducer-board';
+import * as highlight from './reducer-highlight';
 
 export interface ReducerState {
 	board: board.ReducerState;
+	highlight: highlight.ReducerState;
 }
 
 const reducer: Reducer<ReducerState> = combineReducers<ReducerState>({
 	board: board.default,
+	highlight: highlight.default,
 });
 
 export default reducer;
@@ -45,4 +48,8 @@ export const getBoardWarnings = (state: ReducerState) => (
 
 export const isBoardComplete = (state: ReducerState) => (
 	board.isBoardComplete(state.board)
+);
+
+export const isTileHighlightedWarning = (state: ReducerState, x: number, y: number) => (
+	highlight.isTileHighlightedWarning(state.highlight, x, y)
 );

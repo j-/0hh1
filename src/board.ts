@@ -3,6 +3,11 @@ export enum Tile {
 	BLUE = 'blue',
 }
 
+export interface TilePosition {
+	x: number;
+	y: number;
+}
+
 /** Returns the next tile in the sequence when toggling. */
 export const getNextTile = (tile: Tile | null): Tile | null => (
 	tile === Tile.RED ? Tile.BLUE :

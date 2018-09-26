@@ -1,11 +1,11 @@
 import { connect, MapStateToProps, MergeProps, MapDispatchToProps } from 'react-redux';
 import TileAny, { Props } from '../components/TileAny';
-import { Tile as TileType } from '../board';
+import { TileValue } from '../board';
 import { ReducerState, getDisplayTile, isTileLocked, isTileHighlightedWarning } from '../store';
 import { toggleTile } from '../store/actions';
 
 interface StateProps {
-	type: TileType | null;
+	type: TileValue;
 	isWarning: boolean;
 	isLocked: boolean;
 	showLocked: boolean;

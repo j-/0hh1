@@ -1,14 +1,12 @@
-import { Tile } from './board';
+import { TILE_RED as RED, TILE_BLUE as BLUE, TILE_EMPTY as NONE } from './board';
 import { Validator } from './validator';
-
-const { RED, BLUE } = Tile;
 
 it('validates that lines do not exceed max color', () => {
 	const grid = [
-		null, null, RED, null,
-		null, null, BLUE, null,
-		null, null, RED, null,
-		null, null, RED, null,
+		NONE, NONE, RED, NONE,
+		NONE, NONE, BLUE, NONE,
+		NONE, NONE, RED, NONE,
+		NONE, NONE, RED, NONE,
 	];
 	const validator = new Validator(4, 4, grid);
 	const warnings = validator.validate();
@@ -23,12 +21,12 @@ it('validates that lines do not exceed max color', () => {
 
 it('validates that lines to not contain three of the same color', () => {
 	const grid = [
-		BLUE, null, null, null, null, null,
-		BLUE, null, null, null, null, null,
-		BLUE, null, null, null, null, null,
-		null, BLUE, BLUE, BLUE, null, null,
-		null, null, null, null, null, null,
-		null, null, null, null, null, null,
+		BLUE, NONE, NONE, NONE, NONE, NONE,
+		BLUE, NONE, NONE, NONE, NONE, NONE,
+		BLUE, NONE, NONE, NONE, NONE, NONE,
+		NONE, BLUE, BLUE, BLUE, NONE, NONE,
+		NONE, NONE, NONE, NONE, NONE, NONE,
+		NONE, NONE, NONE, NONE, NONE, NONE,
 	];
 	const validator = new Validator(6, 6, grid);
 	const warnings = validator.validate();
@@ -50,8 +48,8 @@ it('validates that lines to not contain three of the same color', () => {
 it('validates that lines are unique', () => {
 	const grid = [
 		BLUE, BLUE, RED, RED,
-		RED, RED, null, null,
-		RED, RED, null, null,
+		RED, RED, NONE, NONE,
+		RED, RED, NONE, NONE,
 		BLUE, BLUE, RED, RED,
 	];
 	const validator = new Validator(4, 4, grid);

@@ -1,31 +1,37 @@
 import { Reducer } from 'redux';
-import { Tile, getNextTile, isBoardFilled as isBoardFilledRule } from '../board';
 import { isActionToggleTile } from './actions';
 import { Validator } from '../validator';
 
-const { RED, BLUE } = Tile;
+import {
+	TileValue,
+	TILE_RED as RED,
+	TILE_BLUE as BLUE,
+	TILE_EMPTY as NONE,
+	getNextTile,
+	isBoardFilled as isBoardFilledRule,
+} from '../board';
 
 export interface ReducerState {
 	width: number;
 	height: number;
-	locked: Array<Tile | null>;
-	player: Array<Tile | null>;
+	locked: TileValue[];
+	player: TileValue[];
 }
 
 export const DEFAULT_STATE: ReducerState = {
 	width: 4,
 	height: 4,
 	locked: [
-		null, null, BLUE, RED,
-		BLUE, null, null, null,
-		null, BLUE, BLUE, null,
-		null, null, null, null,
+		NONE, NONE, BLUE, RED,
+		BLUE, NONE, NONE, NONE,
+		NONE, BLUE, BLUE, NONE,
+		NONE, NONE, NONE, NONE,
 	],
 	player: [
-		null, null, null, null,
-		null, null, null, null,
-		RED, null, null, RED,
-		null, null, null, null,
+		NONE, NONE, NONE, NONE,
+		NONE, NONE, NONE, NONE,
+		RED,  NONE, NONE, RED,
+		NONE, NONE, NONE, NONE,
 	],
 };
 
@@ -108,7 +114,7 @@ export const getDisplayTile = (state: ReducerState, x: number, y: number) => (
 
 /** Returns a merged set of locked and player tiles. */
 const getDisplayTiles = (state: ReducerState) => {
-	const result = [];
+	const result: TileValue[] = [];
 	const length = getTileCount(state);
 	for (let i = 0; i < length; i++) {
 		result.push(
